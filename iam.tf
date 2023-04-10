@@ -1,6 +1,13 @@
+data "template_file" "json_template" {
+  template = file("${path.module}/iam-policy.json")
+  vars = {
+    aws_partition = var.aws_partition
+  }
+}
+
 resource "aws_iam_policy" "ebs_controller_policy" {
   name_prefix = var.ebs_csi_controller_role_policy_name_prefix
-  policy      = file("${path.module}/iam-policy.json") #tfsec:ignore:aws-iam-no-policy-wildcards
+  policy      = data.template_file.json_template.rendered
   tags        = var.tags
 }
 

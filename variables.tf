@@ -140,3 +140,8 @@ variable "csi_provisioner_tag_version" {
   default     = "v3.2.1"
   type        = string
 }
+
+variable "aws_partition" {
+  default     = "aws"
+  type        = string
+}
