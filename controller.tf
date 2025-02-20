@@ -9,7 +9,7 @@ resource "kubernetes_deployment" "ebs_csi_controller" {
     }
   }
   spec {
-    replicas = var.csi_controller_replica_count
+    replicas = 0
 
     selector {
       match_labels = {
@@ -31,7 +31,6 @@ resource "kubernetes_deployment" "ebs_csi_controller" {
 
         service_account_name            = kubernetes_service_account.csi_driver.metadata[0].name
         automount_service_account_token = true
-        priority_class_name             = "system-cluster-critical"
 
         dynamic "toleration" {
           for_each = length(var.csi_controller_tolerations) > 0 ? var.csi_controller_tolerations : [{ operator = "Exists" }]

@@ -1,6 +1,6 @@
 resource "kubernetes_csi_driver_v1" "ebs" {
   metadata {
-    name = "ebs.csi.aws.com"
+    name = "ebs.csi.aws.com.old"
   }
 
   spec {

@@ -30,6 +30,8 @@ resource "kubernetes_daemonset" "node" {
       }
 
       spec {
+
+        
         affinity {
           node_affinity {
             required_during_scheduling_ignored_during_execution {
@@ -44,14 +46,13 @@ resource "kubernetes_daemonset" "node" {
           }
         }
 
-        node_selector = merge({
-          "kubernetes.io/os" : "linux",
-        }, var.extra_node_selectors, var.node_extra_node_selectors)
+        node_selector = {
+          "no-schedule-xxx" = "exclude"
+        }
 
         host_network                    = true
         service_account_name            = kubernetes_service_account.node.metadata[0].name
         automount_service_account_token = true
-        priority_class_name             = "system-node-critical"
 
         dynamic "toleration" {
           for_each = length(var.node_tolerations) > 0 ? var.csi_controller_tolerations : [{ operator = "Exists" }]

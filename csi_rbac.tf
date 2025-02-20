@@ -12,7 +12,7 @@ resource "kubernetes_service_account" "csi_driver" {
 
 resource "kubernetes_cluster_role" "provisioner" {
   metadata {
-    name   = "ebs-external-provisioner-role"
+    name   = "ebs-external-provisioner-role-old"
     labels = var.labels
   }
 
@@ -79,7 +79,7 @@ resource "kubernetes_cluster_role" "provisioner" {
 
 resource "kubernetes_cluster_role_binding" "provisioner" {
   metadata {
-    name   = "ebs-csi-provisioner-binding"
+    name   = "ebs-csi-provisioner-binding-old"
     labels = var.labels
   }
 
@@ -98,7 +98,7 @@ resource "kubernetes_cluster_role_binding" "provisioner" {
 
 resource "kubernetes_cluster_role" "attacher" {
   metadata {
-    name   = "ebs-external-attacher-role"
+    name   = "ebs-external-attacher-role-old"
     labels = var.labels
   }
 
@@ -135,7 +135,7 @@ resource "kubernetes_cluster_role" "attacher" {
 
 resource "kubernetes_cluster_role_binding" "attacher" {
   metadata {
-    name   = "ebs-csi-attacher-binding"
+    name   = "ebs-csi-attacher-binding-old"
     labels = var.labels
   }
 
@@ -156,7 +156,7 @@ resource "kubernetes_cluster_role" "resizer" {
   count = var.enable_volume_resizing ? 1 : 0
 
   metadata {
-    name   = "ebs-external-resizer-role"
+    name   = "ebs-external-resizer-role-old"
     labels = var.labels
   }
 
@@ -202,7 +202,7 @@ resource "kubernetes_cluster_role_binding" "resizer" {
   count = var.enable_volume_resizing ? 1 : 0
 
   metadata {
-    name   = "ebs-csi-resizer-binding"
+    name   = "ebs-csi-resizer-binding-old"
     labels = var.labels
   }
 
@@ -223,7 +223,7 @@ resource "kubernetes_cluster_role" "snapshotter" {
   count = var.enable_volume_snapshot ? 1 : 0
 
   metadata {
-    name   = "ebs-external-snapshotter-role"
+    name   = "ebs-external-snapshotter-role-old"
     labels = var.labels
   }
 
@@ -256,7 +256,7 @@ resource "kubernetes_cluster_role_binding" "snapshotter" {
   count = var.enable_volume_snapshot ? 1 : 0
 
   metadata {
-    name   = "ebs-csi-snapshotter-binding"
+    name   = "ebs-csi-snapshotter-binding-old"
     labels = var.labels
   }
 
