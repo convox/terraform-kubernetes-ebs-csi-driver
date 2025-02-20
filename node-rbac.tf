@@ -9,7 +9,7 @@ resource "kubernetes_service_account" "node" {
 
 resource "kubernetes_cluster_role" "node" {
   metadata {
-    name   = "ebs-csi-node-role"
+    name   = "ebs-csi-node-role-old"
     labels = var.labels
   }
 
@@ -22,7 +22,7 @@ resource "kubernetes_cluster_role" "node" {
 
 resource "kubernetes_cluster_role_binding" "node" {
   metadata {
-    name   = "ebs-csi-node-getter-binding"
+    name   = "ebs-csi-node-getter-binding-old"
     labels = var.labels
   }
 
